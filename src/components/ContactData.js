@@ -73,8 +73,9 @@ class ContactData extends React.Component {
         <ContactDataBG onClick={this.props.closeContactData}>
           <StyledDataBlock onSubmit={this.saveButton} onClick={this.stopPropagation}>
             <CloseDataBlock onClick={this.props.closeContactData}>Close</CloseDataBlock>
-            <EditButton onClick={this.handleEdit}>Edit</EditButton>
-            { (!this.props.contactReadonly) ? <SaveButton size="23px">Submit</SaveButton> : null }
+            { (!this.props.contactReadonly) ?
+              <SaveButton size="23px">Save</SaveButton> :
+              <EditButton onClick={this.handleEdit}>Edit</EditButton> }
             <DataBar
               id="name"
               type="text"

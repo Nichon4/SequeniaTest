@@ -62,7 +62,7 @@ right: 5px;
 export const SaveButton = styled.button`
 position: absolute;
 width: 70px;
-top: 65px;
+top: 35px;
 right: 5px;
 `;
 
