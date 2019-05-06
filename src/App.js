@@ -1,23 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import './App.css';
 import Container from "./components/Container"
-import contactData from "./components/reducers"
+import {reducer} from "./components/actions"
+import {BrowserRouter, Route} from "react-router-dom";
 
-const store = createStore(contactData);
-
-
-class App extends Component {
+const store = createStore(reducer);
 
 
-  render() {
-    return (
-      <Provider store={store} >
-        <Container/>
-      </Provider>
-    );
-  }
-}
+const App = () => {
+
+
+  return (
+    <Provider store={store} >
+      <BrowserRouter>
+        <Route component={Container} />
+      </BrowserRouter>
+    </Provider>
+  );
+};
+
 
 export default App;

@@ -1,29 +1,38 @@
-// Action Types
+import {createAction, handleActions} from 'redux-actions';
 
-export const OPEN_CONTACT_DATA = 'OPEN_CONTACT_DATA';
-export const CLOSE_CONTACT_DATA = 'CLOSE_CONTACT_DATA';
-export const EDIT_CONTACT = 'EDIT_CONTACT';
-export const LOAD_CONTACTS = 'LOAD_CONTACTS';
-export const SAVE_CONTACT= 'SAVE_CONTACT';
+const loadData = createAction("LOAD_DATA");
+const openFilmData = createAction("OPEN_FILM_DATA");
+const closeFilmData = createAction("CLOSE_FILM_DATA");
 
-// Generators
+export {loadData, openFilmData, closeFilmData};
 
-export function openContactData(payload) {
-  return { type: OPEN_CONTACT_DATA, payload: payload}
-}
+const initialState = {
+  films: {
+    isLoaded: false,
+    data: [],
+  },
+  filmData: null,
+  filmDataShow: false,
+};
 
-export function closeContactData() {
-  return { type: CLOSE_CONTACT_DATA }
-}
-
-export function editContact() {
-  return { type: EDIT_CONTACT }
-}
-
-export function loadContacts(payload) {
-  return { type: LOAD_CONTACTS, payload: payload }
-}
-
-export function saveContact(payload) {
-  return { type: SAVE_CONTACT, payload: payload }
-}
+export const reducer = handleActions(
+  {
+    LOAD_DATA: (state, action) => ({
+      films: action.payload
+    }),
+    OPEN_FILM_DATA: (state, action) => {
+      console.log(action.payload);
+      return ({
+        ...state,
+        filmData: action.payload,
+        filmDataShow: action.payload.id,
+      });
+    },
+    CLOSE_FILM_DATA: (state) => ({
+      ...state,
+      filmData: null,
+      filmDataShow: false,
+    })
+  },
+  initialState
+);
